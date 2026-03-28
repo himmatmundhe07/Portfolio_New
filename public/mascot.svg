@@ -1,0 +1,75 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Glossy Body Gradient -->
+    <radialGradient id="bodyGrad" cx="30%" cy="30%" r="80%" fx="40%" fy="30%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="40%" stop-color="#f3f0ff" />
+      <stop offset="100%" stop-color="#d8b4fe" />
+    </radialGradient>
+    
+    <!-- Screen Gradient -->
+    <linearGradient id="screenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3b0764" />
+      <stop offset="100%" stop-color="#1e1b4b" />
+    </linearGradient>
+
+    <!-- Eye Glow -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g transform="translate(0, 10)">
+    <!-- Shadow -->
+    <ellipse cx="100" cy="180" rx="40" ry="10" fill="#000" opacity="0.2" />
+
+    <!-- Left Arm (Waving) -->
+    <path d="M40 100 Q 20 80 30 60" stroke="#eee" stroke-width="12" stroke-linecap="round" fill="none">
+       <animate attributeName="d" values="M40 100 Q 20 80 30 60; M40 100 Q 10 90 20 70; M40 100 Q 20 80 30 60" dur="1s" repeatCount="indefinite" />
+    </path>
+    <circle cx="30" cy="60" r="12" fill="#fff" stroke="#d8b4fe" stroke-width="2">
+       <animate attributeName="cy" values="60; 70; 60" dur="1s" repeatCount="indefinite" />
+       <animate attributeName="cx" values="30; 20; 30" dur="1s" repeatCount="indefinite" />
+    </circle>
+
+    <!-- Right Arm -->
+    <path d="M160 100 Q 180 120 170 140" stroke="#eee" stroke-width="12" stroke-linecap="round" fill="none" />
+    <circle cx="170" cy="140" r="12" fill="#fff" stroke="#d8b4fe" stroke-width="2" />
+
+    <!-- Body -->
+    <rect x="55" y="80" width="90" height="80" rx="25" fill="url(#bodyGrad)" />
+    <!-- Chest Detail -->
+    <circle cx="100" cy="120" r="15" fill="#fff" stroke="#c084fc" stroke-width="2" opacity="0.5" />
+
+    <!-- Head -->
+    <rect x="50" y="20" width="100" height="70" rx="25" fill="url(#bodyGrad)" />
+    
+    <!-- Face Screen -->
+    <rect x="60" y="30" width="80" height="50" rx="15" fill="url(#screenGrad)" />
+    
+    <!-- Eyes -->
+    <g filter="url(#glow)">
+        <!-- Left Eye (Blinking) -->
+        <ellipse cx="80" cy="55" rx="8" ry="10" fill="#22d3ee">
+            <animate attributeName="ry" values="10;10;1;10;10" dur="3s" repeatCount="indefinite" />
+        </ellipse>
+        <!-- Right Eye (Blinking) -->
+        <ellipse cx="120" cy="55" rx="8" ry="10" fill="#22d3ee">
+            <animate attributeName="ry" values="10;10;1;10;10" dur="3s" repeatCount="indefinite" />
+        </ellipse>
+    </g>
+    
+    <!-- Mouth -->
+    <path d="M90 70 Q 100 75 110 70" stroke="#22d3ee" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.8" />
+
+    <!-- Antenna -->
+    <line x1="100" y1="20" x2="100" y2="5" stroke="#ccc" stroke-width="4" />
+    <circle cx="100" cy="5" r="6" fill="#f472b6">
+        <animate attributeName="fill" values="#f472b6; #d946ef; #f472b6" dur="2s" repeatCount="indefinite" />
+    </circle>
+  </g>
+</svg>
