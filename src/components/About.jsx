@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Github, Linkedin, Youtube } from 'lucide-react';
+import { Github, Linkedin, Youtube, Twitter, Code } from 'lucide-react';
 
 const About = () => {
   const ref = useRef(null);
@@ -80,16 +80,37 @@ const About = () => {
   const xTitle = useTransform(scrollYProgress, [0, 1], [-100, 50]);
 
   return (
-    <section id="about" className="py-24 md:py-32 px-6 relative overflow-hidden" ref={ref}>
+    <section id="about" className="min-h-0 md:min-h-screen flex items-center justify-center pt-8 md:pt-0 pb-16 md:pb-32 px-6 relative overflow-x-clip" ref={ref}>
       {/* Abstract Background Elements */}
       <div className="absolute top-1/4 left-0 w-72 h-72 bg-purple-600/20 rounded-full blur-[100px] pointer-events-none -z-10 animate-pulse"></div>
       <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-pink-600/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
-
+      
       <motion.div
         style={{ opacity, scale }}
-        className="container mx-auto max-w-6xl relative z-10"
+        className="container mx-auto max-w-6xl relative z-10 w-full flex flex-col items-center"
       >
-        <div className="grid lg:grid-cols-2 gap-12 md:gap-20 items-center">
+        
+        {/* Main Section Title - Premium Glowing Gradient Design */}
+        <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="w-full mb-12 md:mb-16 flex flex-col items-center relative"
+        >
+             {/* Actual Crisp Foreground Text */}
+             <h2 className="font-serif font-black text-5xl md:text-6xl tracking-[0.2em] leading-none text-transparent bg-clip-text bg-gradient-to-br from-white via-blue-50 to-indigo-200 drop-shadow-md relative z-10 pl-2">
+                 ABOUT ME
+             </h2>
+             {/* Dramatic Backdrop Glow Illusion */}
+             <h2 className="font-serif font-black text-5xl md:text-6xl tracking-[0.2em] leading-none text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 absolute top-[2px] left-1/2 -translate-x-1/2 blur-lg opacity-60 z-0 select-none pointer-events-none pl-2">
+                 ABOUT ME
+             </h2>
+             
+             {/* Glowing Underline Separator */}
+             <div className="w-20 md:w-32 h-[3px] bg-gradient-to-r from-transparent via-purple-400 to-transparent mt-5 rounded-full shadow-[0_0_15px_rgba(168,85,247,0.7)]" />
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-14 items-center w-full">
 
           {/* Left Col: Creative Image Composition - Moves faster (Parallax) */}
           <motion.div
@@ -99,21 +120,21 @@ const About = () => {
             whileHover="hover"
             onHoverStart={() => updateGreeting()} // Trigger update on parent hover
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative group mx-auto lg:mx-0 max-w-sm cursor-pointer z-20"
+            className="relative group mx-auto lg:mx-0 max-w-[280px] md:max-w-sm cursor-pointer z-20 translate-y-8 md:translate-y-16"
           >
             {/* Sneaking Mascot - Pops up on Hover */}
             <motion.div
               variants={{
                 hover: {
                   y: -60,
-                  x: 40,
-                  rotate: 10,
+                  x: 0,
+                  rotate: -5,
                   opacity: 1,
                   transition: { type: "spring", stiffness: 180, damping: 12 }
                 }
               }}
               initial={{ opacity: 0, y: 0, x: 0 }}
-              className="absolute -top-10 -right-10 z-0 pointer-events-none"
+              className="absolute -top-10 -right-8 md:-top-16 md:-right-12 z-30 pointer-events-none"
             >
               <div className="filter drop-shadow-2xl">
                 <img src="/mascot.svg" alt="Mascot" className="w-32 h-32 object-contain" />
@@ -123,7 +144,8 @@ const About = () => {
                   hover: { opacity: 1, scale: 1, y: 0, transition: { delay: 0.1, type: "spring" } }
                 }}
                 initial={{ opacity: 0, scale: 0.5, y: 10 }}
-                className="absolute -top-12 -left-12 bg-white/90 backdrop-blur-md text-gray-900 text-xs font-bold py-2 px-4 rounded-2xl rounded-br-none shadow-xl border border-white/50 whitespace-nowrap"
+                // Bubble magically centered right above the robot's head!
+                className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 bg-white/90 backdrop-blur-md text-gray-900 text-[10px] md:text-[13px] font-bold py-1.5 px-3 md:py-3 md:px-5 rounded-2xl rounded-br-sm shadow-xl border border-white/50 whitespace-nowrap z-40"
               >
                 {greeting}
               </motion.div>
@@ -157,22 +179,16 @@ const About = () => {
             style={{ y: yContent }}
             className="relative"
           >
-            {/* Background Text - Horizontal Parallax */}
-            <motion.h2
-              style={{ x: xTitle }}
-              className="font-serif font-black text-[3rem] md:text-[5rem] leading-none text-white/[0.15] absolute -top-24 -left-28 select-none pointer-events-none hidden lg:block -z-10"
-            >
-              ABOUT
-            </motion.h2>
+        {/* Background Text Removed from here, moved to master background! */}
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <h2 className="font-serif font-bold text-4xl md:text-5xl mb-8 leading-tight relative z-10">
+              <h2 className="font-serif font-bold text-3xl md:text-5xl mb-4 md:mb-6 leading-tight relative z-10">
                 CSE Student <br />
-                <span className="text-stroke-small text-white/10 font-serif italic text-3xl md:text-4xl tracking-normal normal-case block mt-2 opacity-90">
+                <span className="text-stroke-small text-white/10 font-serif italic text-2xl md:text-4xl tracking-normal normal-case block mt-1 md:mt-2 opacity-90">
                   Software Developer
                 </span>
               </h2>
@@ -182,7 +198,7 @@ const About = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="space-y-6 text-base md:text-lg text-white/80 font-light leading-relaxed mb-10 relative z-10"
+              className="space-y-4 md:space-y-6 text-sm md:text-base text-white/80 font-light leading-relaxed mb-6 md:mb-8 relative z-10"
             >
               <p>
                 I’m a first-year Computer Science Engineering student focused on building practical software with strong fundamentals.
@@ -199,7 +215,7 @@ const About = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.6 }}
-              className="grid grid-cols-2 gap-4 md:gap-6 mb-10 relative z-10"
+              className="grid grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8 relative z-10"
             >
               <div className="p-4 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/10 transition-colors group cursor-default">
                 <h4 className="font-serif font-bold text-2xl md:text-3xl text-white mb-1 group-hover:text-purple-300 transition-colors">LEARNING</h4>
@@ -227,11 +243,12 @@ const About = () => {
             </div>
 
             {/* Resume Button */}
-            <div className="flex flex-col md:flex-row items-center gap-8 mt-12 relative z-10">
+            <div className="flex flex-col md:flex-row items-center gap-6 mt-8 md:mt-10 relative z-10">
 
               <motion.a
                 href="/resume.pdf"
-                download
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover="hover"
@@ -247,12 +264,12 @@ const About = () => {
                   className="absolute inset-0 bg-white opacity-10"
                 />
 
-                <span className="relative z-10 font-bold text-white group-hover:text-white transition-colors">Download Resume</span>
+                <span className="relative z-10 font-bold text-white group-hover:text-white transition-colors">View Resume</span>
                 <motion.span
-                  variants={{ hover: { y: 2 } }}
+                  variants={{ hover: { x: 3 } }}
                   className="relative z-10 text-white"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                 </motion.span>
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
               </motion.a>
@@ -261,6 +278,8 @@ const About = () => {
                 {[
                   { icon: Github, href: "https://github.com/himmatmundhe07" },
                   { icon: Linkedin, href: "https://www.linkedin.com/in/himmat-mundhe/" },
+                  { icon: Code, href: "https://leetcode.com/u/Mundhe_Himmat/" },
+                  { icon: Twitter, href: "https://x.com/Himmat_Mundhe" },
                   { icon: Youtube, href: "https://www.youtube.com/@himmatmundhe07" }
                 ].map((social, index) => (
                   <motion.a

@@ -96,26 +96,26 @@ const Skills = () => {
         {
             title: "Frontend Magic",
             icon: Layout,
-            color: "bg-[#ffff99]", // Classic Yellow Post-it
+            color: "bg-[#ffff99]",
             pinColor: "bg-red-500",
             rotation: -3,
-            skills: ["React", "JavaScript (ES6+)", "Tailwind CSS", "Figma", "HTML5/CSS3"]
+            skills: ["React", "JavaScript (ES6+)", "TypeScript", "HTML5", "CSS3", "Tailwind CSS", "shadcn/ui"]
         },
         {
-            title: "Backend Systems",
+            title: "Backend & Database",
             icon: Server,
-            color: "bg-[#ffccff]", // Light Pink
+            color: "bg-[#ffccff]",
             pinColor: "bg-blue-500",
             rotation: 2,
-            skills: ["C / C++", "Node.js", "Express", "MongoDB", "REST APIs"]
+            skills: ["C / C++", "Node.js", "Express", "MongoDB", "Supabase", "PostgreSQL", "REST APIs"]
         },
         {
-            title: "Dev Tools",
+            title: "AI & Dev Tools",
             icon: Terminal,
-            color: "bg-[#ccffff]", // Light Cyan
+            color: "bg-[#ccffff]",
             pinColor: "bg-green-500",
             rotation: -2,
-            skills: ["Git & GitHub", "VS Code", "Postman", "Vercel", "Netlify", "Render"]
+            skills: ["Data Analytics", "SEO Optimization", "Gemini 2.5 Flash", "Git & GitHub", "Postman", "Figma", "Vercel"]
         }
     ];
 
@@ -125,10 +125,10 @@ const Skills = () => {
     ];
 
     return (
-        <section className="py-24 pb-48 relative px-6 md:px-12 overflow-hidden">
+        <section id="skills" className="py-8 md:py-24 pb-12 md:pb-48 relative px-6 md:px-12 overflow-hidden">
 
             {/* Wooden Board Background / Corkboard feel container */}
-            <div className="max-w-7xl mx-auto relative z-10 mb-32">
+            <div className="max-w-7xl mx-auto relative z-10 mb-8 md:mb-32">
                 {/* Board Frame - Rough Texture */}
                 <div
                     className="absolute inset-0 -mx-4 -my-8 bg-[#8B5A2B] rounded-xl shadow-2xl skew-y-1 transform border-t-8 border-l-8 border-[#5C3A1E] opacity-100 -z-20 hidden md:block"

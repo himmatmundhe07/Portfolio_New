@@ -3,9 +3,12 @@ import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Award, Trophy, Star, Crown, Medal, Flame, X, Maximize2, ZoomIn } from 'lucide-react';
 
 // Import Certificate Images
-import cCert from '../assets/C certificate.jpg';
-import jsCert from '../assets/javaScript certificate.jpg';
 import msCert from '../assets/microsoft certificate.jpg';
+import googleAiCert from '../assets/google-ai-cert.png';
+import arcadeCert from '../assets/arcade-points.png';
+import cppCert from '../assets/cpp-intermediate.png';
+import seoCert from '../assets/seo-ai-cert.png';
+import dataCert from '../assets/data-analytics-ai.png';
 
 // Enhanced ShelfItem with Click-to-Zoom
 const ShelfItem = ({ title, issuer, date, image, color, delay, onClick }) => (
@@ -54,34 +57,7 @@ const ShelfItem = ({ title, issuer, date, image, color, delay, onClick }) => (
     </motion.div>
 );
 
-// Trophy/Award Item for the second shelf (Text removed)
-const TrophyItem = ({ icon: Icon, color, delay }) => (
-    <motion.div
-        initial={{ y: -50, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ type: "spring", stiffness: 120, damping: 12, delay: delay }}
-        viewport={{ once: true, margin: "-100px" }}
-        className="relative group flex flex-col items-center justify-end h-48 w-32 md:w-40 mx-2 md:mx-6 shrink-0 cursor-pointer"
-    >
-        {/* The Trophy Object */}
-        <div className="relative z-20 flex flex-col items-center justify-end group-hover:-translate-y-4 transition-transform duration-300 ease-out">
-            {/* Extended Glow */}
-            <div className={`absolute -inset-4 bg-${color}-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
 
-            <Icon
-                size={80}
-                strokeWidth={1}
-                className={`text-${color}-400 drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] filter`}
-                style={{ filter: `drop-shadow(0 0 10px ${color === 'amber' ? '#f59e0b' : color === 'yellow' ? '#eab308' : '#3b82f6'})` }}
-            />
-            {/* Base/Stand - Matched to shelf aesthetic */}
-            <div className="w-16 h-3 bg-[#1e1e1e] rounded-sm mt-[-4px] shadow-lg border-t border-white/10 relative z-10"></div>
-        </div>
-
-        {/* Reflection */}
-        <div className="absolute bottom-[-10px] w-20 h-4 bg-black/50 blur-md rounded-full pointer-events-none"></div>
-    </motion.div>
-);
 
 const HangingMedal = () => {
     const [isSwinging, setIsSwinging] = useState(false);
@@ -126,7 +102,7 @@ const HangingMedal = () => {
 };
 
 const Shelf = ({ children, className = "max-w-7xl", hasMedal }) => (
-    <div className={`relative w-full ${className} mx-auto mb-32 perspective-1000`}>
+    <div className={`relative w-full ${className} mx-auto mb-16 md:mb-32 perspective-1000`}>
         {/* Items sitting on shelf */}
         <div className="flex justify-center flex-wrap px-4 md:px-10 pb-[6px] items-end relative z-20 gap-4 md:gap-12">
             {children}
@@ -153,7 +129,7 @@ const Certificates = () => {
     const [selectedCert, setSelectedCert] = useState(null);
 
     return (
-        <section id="achievements" className="py-24 px-6 relative overflow-hidden bg-gradient-to-b from-transparent via-black/90 to-transparent">
+        <section id="certificates" className="py-12 md:py-24 px-6 relative overflow-hidden bg-gradient-to-b from-transparent via-black/90 to-transparent">
 
             {/* Spotlight Effect */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[600px] bg-amber-500/5 pointer-events-none rounded-full blur-[100px]"></div>
@@ -176,47 +152,56 @@ const Certificates = () => {
                 {/* Shelf 1: Main Certs (Large) */}
                 <Shelf hasMedal={true}>
                     <ShelfItem
-                        title="Programming in C"
-                        issuer="Certification"
+                        title="Introduction to Generative AI"
+                        issuer="Google Cloud"
                         color="blue"
-                        image={cCert}
+                        image={googleAiCert}
                         delay={0.1}
-                        onClick={() => setSelectedCert({ img: cCert, title: "Programming in C", desc: "Foundational programming concepts." })}
+                        onClick={() => setSelectedCert({ img: googleAiCert, title: "Introduction to Generative AI", desc: "Comprehensive understanding of Generative AI fundamentals, large language models, and responsible AI practices from Google Cloud.", link: "https://www.skills.google/public_profiles/efe1f4e9-3716-4ab8-b8ec-845bf975987b/badges/21065485" })}
                     />
                     <ShelfItem
-                        title="JavaScript Algorithms"
-                        issuer="FreeCodeCamp/Udemy"
+                        title="Google Cloud Arcade — Silver League"
+                        issuer="Google Cloud"
                         color="yellow"
-                        image={jsCert}
+                        image={arcadeCert}
                         delay={0.2}
-                        onClick={() => setSelectedCert({ img: jsCert, title: "JavaScript Algorithms", desc: "Advanced algorithmic problem solving." })}
+                        onClick={() => setSelectedCert({ img: arcadeCert, title: "Google Cloud Arcade — Silver League", desc: "Achieved 4 Sprint Badges and 782 points. Hands-on experience with Google Cloud services and cloud computing fundamentals.", link: "https://www.skills.google/public_profiles/efe1f4e9-3716-4ab8-b8ec-845bf975987b/badges/22620055" })}
                     />
                     <ShelfItem
-                        title="Microsoft Technology"
-                        issuer="Microsoft Associate"
+                        title="GitHub Copilot Fundamentals"
+                        issuer="Microsoft × Simplilearn"
                         color="amber"
                         image={msCert}
                         delay={0.3}
-                        onClick={() => setSelectedCert({ img: msCert, title: "Microsoft Certified", desc: "Cloud and AI fundamentals." })}
+                        onClick={() => setSelectedCert({ img: msCert, title: "GitHub Copilot Fundamentals", desc: "Mastered AI-assisted development with GitHub Copilot, enhancing coding productivity and understanding AI-powered software development workflows." })}
                     />
                 </Shelf>
 
-                {/* Shelf 2: Trophies & Medals (Smaller) */}
-                <Shelf className="max-w-4xl">
-                    <TrophyItem
-                        icon={Trophy}
-                        color="amber"
-                        delay={0.4}
-                    />
-                    <TrophyItem
-                        icon={Star}
-                        color="yellow"
-                        delay={0.5}
-                    />
-                    <TrophyItem
-                        icon={Crown}
+                {/* Shelf 2: Intermediate & AI Certs */}
+                <Shelf className="max-w-6xl">
+                    <ShelfItem
+                        title="C++ Intermediate"
+                        issuer="HackerRank"
                         color="blue"
+                        image={cppCert}
+                        delay={0.4}
+                        onClick={() => setSelectedCert({ img: cppCert, title: "C++ Intermediate Certificate", desc: "Demonstrated proficiency in intermediate C++ concepts including object-oriented programming, data structures, and memory management.", link: "https://drive.google.com/file/d/1-dDZIEjy1K7yQKQAeiA8IjwWFWu8jwmJ/view?usp=sharing" })}
+                    />
+                    <ShelfItem
+                        title="SEO with AI"
+                        issuer="LinkedIn News"
+                        color="indigo"
+                        image={seoCert}
+                        delay={0.5}
+                        onClick={() => setSelectedCert({ img: seoCert, title: "SEO with AI", desc: "Mastered the integration of Artificial Intelligence tools to optimize search engine ranking, content strategy, and data-driven SEO workflows.", link: "https://drive.google.com/file/d/1xbwq78kEzx7SW_qOOn4iVqmKU9vF5bad/view?usp=sharing" })}
+                    />
+                    <ShelfItem
+                        title="Data Analytics with AI"
+                        issuer="Google AI"
+                        color="amber"
+                        image={dataCert}
                         delay={0.6}
+                        onClick={() => setSelectedCert({ img: dataCert, title: "Data Analytics with AI", desc: "Expertise in leveraging AI models for complex data analysis, predictive modeling, and deriving actionable insights from large datasets.", link: "https://drive.google.com/file/d/18bE1kUJnG_hABvp98s43SlZsnq8f-OaX/view?usp=sharing" })}
                     />
                 </Shelf>
 
@@ -267,6 +252,11 @@ const Certificates = () => {
                             <div className="mt-8 text-center bg-black/60 backdrop-blur-md px-8 py-4 rounded-2xl border border-white/10">
                                 <h3 className="text-2xl md:text-3xl font-serif text-white mb-2 tracking-wide">{selectedCert.title}</h3>
                                 {selectedCert.desc && <p className="text-amber-400/80 font-mono text-sm">{selectedCert.desc}</p>}
+                                {selectedCert.link && (
+                                    <a href={selectedCert.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 mt-4 px-5 py-2 bg-white/10 hover:bg-white/20 text-white font-bold text-sm rounded-full border border-white/20 transition-all">
+                                        Verify Badge ↗
+                                    </a>
+                                )}
                             </div>
 
                         </motion.div>

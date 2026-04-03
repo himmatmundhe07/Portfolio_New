@@ -2,20 +2,23 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const Hero = () => (
-  <header className="relative pt-4 pb-10 md:pt-8 md:pb-20 px-6 overflow-hidden min-h-screen flex flex-col items-center">
-    {/* Background Big Text */}
-    <div className="absolute top-[40%] left-0 w-full overflow-hidden opacity-20 mix-blend-overlay pointer-events-none -translate-y-1/2">
+  // Using dynamic viewport height (dvh) to fix mobile browser address bar issues
+  <header className="relative pt-6 pb-0 px-6 overflow-x-hidden min-h-[85dvh] md:min-h-screen flex flex-col items-center">
+    
+    {/* Background Marquee Text - Optimized for Mobile Scale */}
+    <div className="absolute top-[42%] left-0 w-full overflow-hidden opacity-20 mix-blend-overlay pointer-events-none -translate-y-1/2">
       <div className="flex whitespace-nowrap animate-marquee w-fit">
-        <h1 className="text-[4rem] md:text-[8rem] leading-[1.5] font-tall tracking-tight text-white px-8 py-10">
+        <h1 className="text-[2.8rem] md:text-[8rem] leading-[1.5] font-tall tracking-tight text-white px-8 py-6 md:py-10">
           CODING • PROBLEM-SOLVING • UI/UX • BUILDING •
         </h1>
-        <h1 className="text-[4rem] md:text-[8rem] leading-[1.5] font-tall tracking-tight text-white px-8 py-10">
+        <h1 className="text-[2.8rem] md:text-[8rem] leading-[1.5] font-tall tracking-tight text-white px-8 py-6 md:py-10">
           CODING • PROBLEM-SOLVING • UI/UX • BUILDING •
         </h1>
       </div>
     </div>
 
     <div className="container mx-auto flex flex-col items-center relative z-10 text-center">
+      {/* Name section with better mobile spacing */}
       <motion.h1
         initial="hidden"
         animate="visible"
@@ -23,19 +26,17 @@ const Hero = () => (
           hidden: { opacity: 0 },
           visible: {
             opacity: 1,
-            transition: {
-              staggerChildren: 0.1
-            }
+            transition: { staggerChildren: 0.1 }
           }
         }}
-        className="flex flex-col items-center leading-none mb-2 drop-shadow-2xl"
+        className="flex flex-col items-center leading-none mb-4 md:mb-2 drop-shadow-2xl"
       >
         <motion.span
           variants={{
             hidden: { opacity: 0, y: 20 },
             visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
           }}
-          className="font-serif italic text-2xl md:text-3xl text-white/90 mb-0 z-10 relative"
+          className="font-serif italic text-xl md:text-3xl text-white/95 mb-1 z-10 relative font-medium"
         >
           Hi, I'm
         </motion.span>
@@ -50,16 +51,28 @@ const Hero = () => (
         </motion.span>
       </motion.h1>
 
-      <p className="max-w-2xl mx-auto text-base md:text-lg text-white/80 leading-relaxed font-light mb-2">
+      {/* Description - Tightened for small screens */}
+      <p className="max-w-[280px] md:max-w-2xl mx-auto text-sm md:text-lg text-white/80 leading-relaxed font-light mb-6 md:mb-2 px-2">
         A Computer Science student and aspiring Software Developer, focused on building practical, efficient solutions through code.
       </p>
 
-      <div className="relative w-screen max-w-none -mt-16 md:-mt-40 flex justify-center items-center pointer-events-none">
+      {/* 3D GIF — tightly controlled on mobile to prevent overlapping text */}
+      <div className="relative w-screen max-w-none flex justify-center items-end pointer-events-none
+                      -mt-2 md:-mt-40
+                      h-[55vw] md:h-auto
+                      overflow-hidden md:overflow-visible">
         <img
           src="https://framerusercontent.com/images/KG8R1mCV1UsJejESQRUWuhiPci0.gif?width=1920&height=1026"
           alt="3D Floating Element"
-          className="w-full h-auto object-cover scale-125 md:scale-[1.75] origin-top animate-float opacity-90"
-          style={{ maskImage: 'linear-gradient(to bottom, black 80%, transparent 95%)', WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 95%)' }}
+          className="
+            w-full object-cover origin-top animate-float opacity-90
+            scale-[1.15] md:scale-[1.75]
+          "
+          style={{
+            maskImage: 'linear-gradient(to bottom, black 75%, transparent 98%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, black 75%, transparent 98%)',
+            objectPosition: 'center 32%', // Focus on the computer/desk area
+          }}
         />
       </div>
     </div>

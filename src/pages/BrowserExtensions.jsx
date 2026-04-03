@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Box, CheckCircle, Download, Star, Youtube } from 'lucide-react';
 import StarBackground from '../components/StarBackground';
-import { HashLink } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 
 const ExtensionItem = ({ title, description, users, rating, color, icon: Icon }) => (
     <motion.div
@@ -62,9 +62,9 @@ const BrowserExtensions = () => {
         <div className="min-h-screen text-white font-sans p-6 md:p-12 selection:bg-purple-500/30 relative overflow-x-hidden">
             <StarBackground />
             <div className="max-w-4xl mx-auto relative z-10">
-                <HashLink to="/#projects" className="inline-flex items-center text-purple-200 hover:text-white mb-12 transition-all group bg-purple-500/10 hover:bg-purple-500/20 px-5 py-2.5 rounded-full border border-purple-500/20 backdrop-blur-sm shadow-lg shadow-purple-500/10">
+                <Link to="/" className="inline-flex items-center text-purple-200 hover:text-white mb-12 transition-all group bg-purple-500/10 hover:bg-purple-500/20 px-5 py-2.5 rounded-full border border-purple-500/20 backdrop-blur-sm shadow-lg shadow-purple-500/10">
                     <ArrowLeft size={20} className="mr-2 group-hover:-translate-x-1 transition-transform" /> Back to Portfolio
-                </HashLink>
+                </Link>
 
                 {/* Header Content moved here */}
                 <div className="flex items-end justify-between mb-10 border-b border-white/10 pb-8">

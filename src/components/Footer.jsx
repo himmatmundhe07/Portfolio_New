@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Github, Linkedin } from 'lucide-react';
+import { Mail, Github, Linkedin, Twitter, Code } from 'lucide-react';
 
 const Footer = () => (
   <footer id="contact" className="py-20 px-6 text-center relative">
@@ -11,20 +11,26 @@ const Footer = () => (
         Let's build something <br/> awesome together.
       </h2>
       
-      <div className="flex flex-wrap justify-center gap-6 mb-12">
-         <a href="mailto:contact@ayush.dev" className="flex items-center gap-2 px-6 py-3 bg-white text-purple-900 rounded-full font-bold hover:scale-105 transition-transform">
-           <Mail size={20} /> Email Me
+      <div className="flex flex-wrap justify-center gap-4 mb-12">
+         <a href="mailto:himmatmundhe07@gmail.com" className="flex items-center gap-2 px-6 py-3 bg-white text-purple-900 rounded-full font-bold hover:scale-105 transition-transform shadow-lg">
+           <Mail size={18} /> Email Me
          </a>
-         <a href="[https://github.com/himmatmundhe07](https://github.com/himmatmundhe07)" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/20 rounded-full font-bold hover:bg-white/20 transition-all">
-           <Github size={20} /> GitHub
+         <a href="https://github.com/himmatmundhe07" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-3 bg-white/10 border border-white/20 rounded-full font-bold hover:bg-white/20 transition-all">
+           <Github size={18} /> GitHub
          </a>
-         <a href="#" className="flex items-center gap-2 px-6 py-3 bg-white/10 border border-white/20 rounded-full font-bold hover:bg-white/20 transition-all">
-           <Linkedin size={20} /> LinkedIn
+         <a href="https://www.linkedin.com/in/himmat-mundhe/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-3 bg-white/10 border border-white/20 rounded-full font-bold hover:bg-white/20 transition-all">
+           <Linkedin size={18} /> LinkedIn
+         </a>
+         <a href="https://leetcode.com/u/Mundhe_Himmat/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-3 bg-white/10 border border-white/20 rounded-full font-bold hover:bg-white/20 transition-all">
+           <Code size={18} /> LeetCode
+         </a>
+         <a href="https://x.com/Himmat_Mundhe" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-3 bg-white/10 border border-white/20 rounded-full font-bold hover:bg-white/20 transition-all">
+           <Twitter size={18} /> X
          </a>
       </div>
 
       <p className="text-white/50 text-sm">
-        © {new Date().getFullYear()} Ayush. Crafted with React & Tailwind.
+        © {new Date().getFullYear()} Himmat. Crafted with React & Tailwind.
       </p>
     </div>
   </footer>

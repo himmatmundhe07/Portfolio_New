@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, useNavigationType } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -10,6 +10,9 @@ import Projects from './components/Projects';
 import Certificates from './components/Certificates';
 
 import Journey from './components/Journey';
+import Experience from './components/Experience';
+import GithubActivity from './components/GithubActivity';
+import Hackathon from './components/Hackathon';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -17,15 +20,41 @@ import Footer from './components/Footer';
 import FunctionalApps from './pages/FunctionalApps';
 import WebsiteClones from './pages/WebsiteClones';
 import GamesArcade from './pages/GamesArcade';
-import BrowserExtensions from './pages/BrowserExtensions';
+import UIDesigns from './pages/UIDesigns';
 
-const ScrollToTop = () => {
-  const { pathname, hash } = useLocation();
+const ScrollHandler = () => {
+  const location = useLocation();
+  const navType = useNavigationType();
+
+  // Save scroll position constantly on scroll
   useEffect(() => {
-    if (!hash) {
-      window.scrollTo(0, 0);
+    const handleScroll = () => {
+      sessionStorage.setItem(`scroll-${location.key}`, window.scrollY.toString());
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location.key]);
+
+  // Restore or reset scroll position on navigation
+  useEffect(() => {
+    if (!location.hash) {
+      if (navType === "POP") {
+        const savedScroll = sessionStorage.getItem(`scroll-${location.key}`);
+        if (savedScroll !== null) {
+          // Wait for framer-motion AnimatePresence "wait" exit animation (0.3s)
+          setTimeout(() => {
+            window.scrollTo({ top: parseInt(savedScroll, 10), behavior: 'instant' });
+          }, 350);
+        }
+      } else {
+        // When pushing to a new page, scroll to top AFTER the out-animation completes
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: 'instant' });
+        }, 350);
+      }
     }
-  }, [pathname, hash]);
+  }, [location.pathname, location.hash, location.key, navType]);
+
   return null;
 };
 
@@ -49,7 +78,10 @@ const MainLayout = () => {
         <Skills />
         <Projects />
         <Certificates />
+        <Experience />
         <Journey />
+        <Hackathon />
+        <GithubActivity />
         <Contact />
       </main>
     </>
@@ -58,9 +90,9 @@ const MainLayout = () => {
 
 const PageWrapper = ({ children }) => (
   <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -20 }}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
     transition={{ duration: 0.3, ease: "easeInOut" }}
     className="w-full"
   >
@@ -78,7 +110,7 @@ const AnimatedRoutes = () => {
         <Route path="/projects/functional" element={<PageWrapper><FunctionalApps /></PageWrapper>} />
         <Route path="/projects/clones" element={<PageWrapper><WebsiteClones /></PageWrapper>} />
         <Route path="/projects/games" element={<PageWrapper><GamesArcade /></PageWrapper>} />
-        <Route path="/projects/extensions" element={<PageWrapper><BrowserExtensions /></PageWrapper>} />
+        <Route path="/projects/designs" element={<PageWrapper><UIDesigns /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
   );
@@ -86,7 +118,7 @@ const AnimatedRoutes = () => {
 
 export default function App() {
   return (
-    <div className="min-h-screen w-full bg-gradient-to-b from-[#6a82fb] via-[#a389f4] to-[#e0c3fc] text-white font-sans overflow-x-hidden selection:bg-pink-300 selection:text-purple-900">
+    <div className="min-h-screen w-full bg-gradient-to-b from-[#6a82fb] via-[#a389f4] to-[#e0c3fc] text-white font-sans selection:bg-pink-300 selection:text-purple-900">
 
       {/* Import Fonts & Global Styles */}
       <style>{`
@@ -126,7 +158,7 @@ export default function App() {
       `}</style>
 
       <Router>
-        <ScrollToTop />
+        <ScrollHandler />
         <AnimatedRoutes />
       </Router>
 

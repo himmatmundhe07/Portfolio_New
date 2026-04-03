@@ -1,5 +1,4 @@
-import React from 'react';
-import { Layers, Globe, Gamepad2, Puzzle } from 'lucide-react';
+import { Layers, Globe, Gamepad2, Figma } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -103,19 +102,19 @@ const Projects = () => {
       count: "3 Games"
     },
     {
-      title: "Browser Extensions",
-      description: "Productivity/utility tools and browser enhancements designed to improve workflow and user experience.",
-      icon: Puzzle,
+      title: "UI/UX & Figma",
+      description: "Pixel-perfect Figma designs, mockups, and wireframes focused on modern aesthetics, accessibility, and user-centered composition.",
+      icon: Figma,
       colorClass: "bg-purple-500/20",
       iconColorClass: "text-purple-200",
-      path: "/projects/extensions",
-      techs: ["Manifest V3", "Chrome API"],
-      count: "2 Tools"
+      path: "/projects/designs",
+      techs: ["Figma", "Wireframing", "Prototyping"],
+      count: "4 Designs"
     }
   ];
 
   return (
-    <section id="projects" className="pt-0 pb-16 px-6 scroll-mt-20">
+    <section id="projects" className="py-8 md:py-16 px-6 scroll-mt-20">
       <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

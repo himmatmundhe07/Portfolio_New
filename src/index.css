@@ -5,6 +5,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html, body {
+    overflow-x: clip;
+  }
+}
+
 @layer utilities {
     .writing-vertical-rl {
         writing-mode: vertical-rl;
@@ -13,6 +19,25 @@
     .text-stroke-small {
         -webkit-text-stroke: 1px rgba(255, 255, 255, 0.5);
     }
+
+    /* 3D Book Utilities */
+    .preserve-3d {
+        transform-style: preserve-3d;
+    }
+
+    .backface-hidden {
+        backface-visibility: hidden;
+    }
+}
+
+/* Page turn shimmer */
+@keyframes page-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.animate-page-shimmer {
+    animation: page-shimmer 3s ease-in-out infinite;
 }
 
 /* Shooting Star Animation */

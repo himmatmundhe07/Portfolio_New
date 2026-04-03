@@ -1,184 +1,153 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Send, MapPin, Mail, Phone, Github, Linkedin, Twitter, Globe, Feather, PenTool } from 'lucide-react';
+import { Mail, MapPin, Send, Github, Linkedin, Youtube, Twitter, Code } from 'lucide-react';
 
 const Contact = () => {
-    const [formState, setFormState] = useState({ name: '', email: '', message: '' });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isSent, setIsSent] = useState(false);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        // Simulate sending
-        setTimeout(() => {
-            setIsSubmitting(false);
-            setIsSent(true);
-            setFormState({ name: '', email: '', message: '' });
-            setTimeout(() => setIsSent(false), 3000);
-        }, 2000);
-    };
-
-    const handleChange = (e) => {
-        setFormState({ ...formState, [e.target.name]: e.target.value });
-    };
-
-    // Social Links Data - Polaroids on desk
-    const socialLinks = [
-        { icon: Github, href: "https://github.com/himmataw", label: "GitHub", rotate: "rotate-[-5deg]", image: 'https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=150&q=80' },
-        { icon: Linkedin, href: "https://linkedin.com/in/himmataw", label: "LinkedIn", rotate: "rotate-[3deg]", image: 'https://images.unsplash.com/photo-1611944212129-29990460f15d?w=150&q=80' },
-        { icon: Twitter, href: "https://twitter.com", label: "Twitter", rotate: "rotate-[-2deg]", image: 'https://images.unsplash.com/photo-1611605698335-8b1569810432?w=150&q=80' },
-    ];
-
     return (
-        <section id="contact" className="relative min-h-[110vh] py-24 px-6 overflow-hidden flex items-center justify-center">
+        <section id="contact" className="py-24 px-6 relative z-10 w-full overflow-hidden">
+            {/* Background Glows */}
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none -z-10 opacity-60" />
+            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-pink-600/20 rounded-full blur-[100px] pointer-events-none -z-10 opacity-60" />
 
-            {/* Background: Transparent (User Requested) */}
-
-            {/* Ambient Lighting - Warm Candle/Lamp Glow */}
-            <div className="absolute top-10 left-10 w-96 h-96 bg-orange-500/10 rounded-full blur-[100px] pointer-events-none"></div>
-
-            <div className="relative z-10 w-full max-w-6xl flex flex-col md:flex-row items-start gap-12 lg:gap-24 pt-10">
-
-                {/* Left Side: The Letter / Form */}
+            <div className="container mx-auto max-w-6xl">
                 <motion.div
-                    initial={{ opacity: 0, y: 30, rotate: -1 }}
-                    whileInView={{ opacity: 1, y: 0, rotate: -1 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="w-full md:w-2/3 relative"
+                    className="mb-16 text-center relative"
                 >
-                    {/* The Paper Sheet */}
-                    <div className="bg-[#f0e6d2] text-gray-800 p-8 md:p-12 rounded-sm shadow-[0_10px_30px_rgba(0,0,0,0.5)] transform rotate-1 border border-[#dcd0b9] relative overflow-hidden">
-
-                        {/* Paper Texture */}
-                        <div className="absolute inset-0 opacity-40 bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] pointer-events-none mix-blend-multiply"></div>
-                        {/* Creases/Stains */}
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-orange-900/5 rounded-full blur-2xl pointer-events-none"></div>
-                        <div className="absolute bottom-10 left-10 w-20 h-20 bg-black/5 rounded-full blur-xl pointer-events-none"></div>
-
-                        <div className="relative z-10">
-                            <h2 className="text-4xl md:text-5xl font-fancy text-[#2c1810] mb-2 drop-shadow-sm opacity-90">
-                                Send a Raven
-                            </h2>
-                            <p className="font-serif text-[#5d4037] italic mb-8 border-b border-[#bfa993] pb-4 inline-block pr-12">
-                                Or just fill out this parchment to reach me.
-                            </p>
-
-                            <form onSubmit={handleSubmit} className="space-y-6">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div className="group">
-                                        <label className="block font-serif text-[#5d4037] text-sm mb-1">Your Name</label>
-                                        <input
-                                            type="text"
-                                            name="name"
-                                            value={formState.name}
-                                            onChange={handleChange}
-                                            className="w-full bg-transparent border-b-2 border-[#bfa993] py-2 text-[#2c1810] font-fancy text-xl placeholder-[#a69280] focus:outline-none focus:border-[#8b5a2b] transition-colors bg-[#00000005]"
-                                            placeholder="Sir/Lady..."
-                                        />
-                                    </div>
-                                    <div className="group">
-                                        <label className="block font-serif text-[#5d4037] text-sm mb-1">Your Owl Address</label>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            value={formState.email}
-                                            onChange={handleChange}
-                                            className="w-full bg-transparent border-b-2 border-[#bfa993] py-2 text-[#2c1810] font-fancy text-xl placeholder-[#a69280] focus:outline-none focus:border-[#8b5a2b] transition-colors bg-[#00000005]"
-                                            placeholder="email@example.com"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="group mt-4">
-                                    <label className="block font-serif text-[#5d4037] text-sm mb-1">The Message</label>
-                                    <textarea
-                                        name="message"
-                                        rows="5"
-                                        value={formState.message}
-                                        onChange={handleChange}
-                                        className="w-full bg-[url('https://www.transparenttextures.com/patterns/notebook.png')] bg-white/40 border border-[#bfa993] rounded-sm p-4 text-[#2c1810] font-serif text-lg leading-relaxed focus:outline-none focus:border-[#8b5a2b] focus:ring-1 focus:ring-[#8b5a2b]/20 text-justify"
-                                        placeholder="Dearest Himmat, I write to you today regarding..."
-                                    ></textarea>
-                                </div>
-
-                                <div className="flex justify-end pt-4">
-                                    <motion.button
-                                        whileHover={{ scale: 1.05, rotate: 1 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        type="submit"
-                                        disabled={isSubmitting || isSent}
-                                        className={`relative px-8 py-3 font-serif font-bold text-[#f0e6d2] tracking-wider uppercase shadow-md transition-all ${isSent
-                                            ? "bg-[#4a6b4a]" // Green wax color
-                                            : "bg-[#8b2b2b]" // Red wax color
-                                            } rounded-sm overflow-hidden`}
-                                        style={{ borderRadius: "50% 20% / 10% 40%" }} // Wax seal pseudo-shape
-                                    >
-                                        <span className="relative z-10 flex items-center gap-2">
-                                            {isSubmitting ? (
-                                                <Feather className="animate-bounce" size={18} />
-                                            ) : isSent ? (
-                                                <>Sealed & Sent <Feather size={18} /></>
-                                            ) : (
-                                                <>Affix Seal <PenTool size={18} /></>
-                                            )}
-                                        </span>
-                                        {/* Wax shine */}
-                                        <div className="absolute top-0 right-0 w-full h-1/2 bg-white/20 rounded-full blur-md"></div>
-                                    </motion.button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+                    <h2 className="font-serif text-5xl md:text-6xl font-bold mb-6 tracking-tight text-[#1a1028]">
+                        Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 drop-shadow-sm">Connect</span>
+                    </h2>
+                    <p className="text-[#1a1028]/70 max-w-2xl mx-auto text-lg md:text-xl font-medium">
+                        Turning ideas into digital reality. Reach out for collaborations or just a friendly chat.
+                    </p>
+                    <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto mt-8 rounded-full shadow-lg" />
                 </motion.div>
 
-                {/* Right Side: Desk Objects / Socials */}
-                <div className="w-full md:w-3/3 flex flex-col gap-8 relative mt-12 md:mt-24">
-
-                    {/* Compass / Map Decoration */}
-                    <motion.div
-                        initial={{ opacity: 0, rotate: 20 }}
-                        whileInView={{ opacity: 1, rotate: 0 }}
-                        transition={{ duration: 1 }}
-                        className="absolute -top-32 -right-10 w-48 h-48 opacity-80 pointer-events-none hidden md:block"
-                    >
-                        {/* Simple CSS Compass representation or SVG */}
-                        <div className="w-full h-full border-4 border-[#bfa993] rounded-full flex items-center justify-center bg-[#f0e6d2]/10 backdrop-blur-sm shadow-xl">
-                            <div className="w-2 h-24 bg-red-800 absolute rotate-45 shadow-md origin-center animate-[spin_10s_linear_infinite]" style={{ clipPath: 'polygon(50% 0, 100% 50%, 50% 100%, 0 50%)' }}></div>
-                        </div>
-                    </motion.div>
-
-
-                    {/* Social Polaroids */}
-                    {socialLinks.map((social, index) => (
-                        <motion.a
-                            key={index}
-                            href={social.href}
-                            target="_blank"
-                            initial={{ y: 50, opacity: 0, rotate: Math.random() * 10 - 5 }}
-                            whileInView={{ y: 0, opacity: 1, rotate: social.rotate }}
-                            whileHover={{ scale: 1.1, rotate: 0, zIndex: 50 }}
-                            transition={{ delay: index * 0.1 }}
-                            className={`block bg-white p-3 pb-8 shadow-[0_5px_15px_rgba(0,0,0,0.4)] w-48 mx-auto md:mx-0 transform ${social.rotate} hover:shadow-2xl transition-all cursor-pointer`}
+                <div className="grid lg:grid-cols-12 gap-8 items-stretch">
+                    {/* Left Side: Interactive Info Cards */}
+                    <div className="lg:col-span-5 space-y-6">
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            className="bg-[#1a1028] border border-white/10 rounded-3xl p-8 hover:bg-[#25183a] transition-all duration-500 group relative overflow-hidden shadow-2xl"
                         >
-                            <div className="w-full h-32 bg-gray-200 mb-3 overflow-hidden grayscale hover:grayscale-0 transition-all duration-500 relative group">
-                                <img src={social.image} alt={social.label} className="w-full h-full object-cover" />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-all"></div>
-                                <div className="absolute inset-0 flex items-center justify-center opacity-70">
-                                    <social.icon size={32} className="text-white drop-shadow-md" />
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-indigo-500/20 transition-colors" />
+                            
+                            <h3 className="font-serif text-3xl font-bold text-white mb-8 leading-tight">
+                                Contact <br /><span className="text-white/40 text-2xl">Information</span>
+                            </h3>
+
+                            <div className="space-y-8">
+                                <a href="mailto:himmatmundhe07@gmail.com" className="flex items-center gap-6 group/item">
+                                    <div className="w-14 h-14 rounded-2xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center group-hover/item:scale-110 group-hover/item:border-indigo-500/50 transition-all duration-300">
+                                        <Mail size={24} className="text-indigo-400" />
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-bold text-white/40 uppercase tracking-[0.2em] mb-1">Email Me</p>
+                                        <p className="text-lg font-medium text-white group-hover/item:text-indigo-300 transition-colors">himmatmundhe07@gmail.com</p>
+                                    </div>
+                                </a>
+
+                                <div className="flex items-center gap-6 group/item">
+                                    <div className="w-14 h-14 rounded-2xl bg-pink-500/20 border border-pink-500/30 flex items-center justify-center group-hover/item:scale-110 group-hover/item:border-pink-500/50 transition-all duration-300">
+                                        <MapPin size={24} className="text-pink-400" />
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-bold text-white/40 uppercase tracking-[0.2em] mb-1">Location</p>
+                                        <p className="text-lg font-medium text-white">Ahmedabad, Gujarat</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="font-handwriting text-center text-gray-800 text-xl font-bold">
-                                {social.label}
+
+                            <div className="mt-12 pt-10 border-t border-white/5">
+                                <p className="text-xs font-bold text-white/40 uppercase tracking-[0.2em] mb-6">Social Profiles</p>
+                                <div className="flex flex-wrap gap-4">
+                                    {[
+                                        { icon: Github, href: "https://github.com/himmatmundhe07", color: "hover:text-white" },
+                                        { icon: Linkedin, href: "https://www.linkedin.com/in/himmat-mundhe/", color: "hover:text-blue-400" },
+                                        { icon: Code, href: "https://leetcode.com/u/Mundhe_Himmat/", color: "hover:text-orange-400" },
+                                        { icon: Twitter, href: "https://x.com/Himmat_Mundhe", color: "hover:text-sky-400" },
+                                        { icon: Youtube, href: "https://www.youtube.com/@himmatmundhe07", color: "hover:text-red-500" },
+                                    ].map((s, i) => (
+                                        <motion.a
+                                            key={i}
+                                            href={s.href}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            whileHover={{ y: -5, scale: 1.1 }}
+                                            className={`w-12 h-12 bg-white/5 border border-white/10 rounded-xl flex items-center justify-center text-white/40 ${s.color} hover:bg-white/10 hover:border-white/20 transition-all duration-300 shadow-lg`}
+                                        >
+                                            <s.icon size={20} />
+                                        </motion.a>
+                                    ))}
+                                </div>
                             </div>
-                        </motion.a>
-                    ))}
+                        </motion.div>
+                    </div>
 
-                    {/* Quill/Inkwell decoration could go here */}
+                    {/* Right Side: Modern Form */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        className="lg:col-span-7 bg-[#1a1028] border border-white/10 rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-2xl"
+                    >
+                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl -ml-32 -mb-32" />
+                        
+                        <form className="space-y-8 relative z-10" onSubmit={(e) => e.preventDefault()}>
+                            <div className="grid md:grid-cols-2 gap-8">
+                                <div className="space-y-2">
+                                    <label className="text-xs font-bold text-white/60 uppercase tracking-widest pl-1">Full Name</label>
+                                    <input 
+                                        type="text" 
+                                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500/50 transition-all duration-300"
+                                        placeholder="Himmat Mundhe"
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-xs font-bold text-white/60 uppercase tracking-widest pl-1">Email Address</label>
+                                    <input 
+                                        type="email" 
+                                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-purple-500/40 focus:border-purple-500/50 transition-all duration-300"
+                                        placeholder="hello@example.com"
+                                    />
+                                </div>
+                            </div>
+                            
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold text-white/60 uppercase tracking-widest pl-1">Subject</label>
+                                <input 
+                                    type="text" 
+                                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-pink-500/40 focus:border-pink-500/50 transition-all duration-300"
+                                    placeholder="How can I help you?"
+                                />
+                            </div>
 
+                            <div className="space-y-2">
+                                <label className="text-xs font-bold text-white/60 uppercase tracking-widest pl-1">Message</label>
+                                <textarea 
+                                    rows="5"
+                                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:border-indigo-500/50 transition-all duration-300 resize-none"
+                                    placeholder="Tell me about your amazing project..."
+                                ></textarea>
+                            </div>
+
+                            <motion.button 
+                                whileHover={{ scale: 1.01, translateY: -2 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="w-full py-5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 text-white font-bold rounded-2xl shadow-[0_10px_40px_rgba(79,70,229,0.3)] hover:shadow-[0_20px_50px_rgba(79,70,229,0.5)] transition-all duration-300 flex items-center justify-center gap-3 text-lg tracking-wide group"
+                            >
+                                Send Message 
+                                <Send size={20} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                            </motion.button>
+                        </form>
+                    </motion.div>
                 </div>
             </div>
-
         </section>
     );
 };

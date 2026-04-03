@@ -24,7 +24,7 @@ const FloatingElement = ({ delay, duration, top, left, size = "w-12 h-12", icon:
 
 const MapNode = ({ title, year, description, icon: Icon, align = 'left', delay }) => {
   return (
-    <div className={`relative flex items-center justify-between w-full mb-24 md:mb-32 ${align === 'left' ? 'flex-row-reverse' : ''}`}>
+    <div className={`relative flex items-center justify-between w-full mb-12 md:mb-32 ${align === 'left' ? 'flex-row-reverse' : ''}`}>
 
       {/* Empty space for the opposite side */}
       <div className="hidden md:block w-5/12" />
@@ -104,7 +104,7 @@ const Journey = () => {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="relative z-10 text-center mb-20 pt-20"
+          className="relative z-10 text-center mb-12 md:mb-20 pt-12 md:pt-20"
         >
           <motion.h2
             animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
@@ -119,43 +119,34 @@ const Journey = () => {
         </motion.div>
 
         {/* The Main Highway Path (Dimmed Gold) - REVERTED to subtle static gradient */}
-        <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-96 bottom-20 w-1 md:w-3 bg-gradient-to-b from-amber-600/60 via-amber-800/40 to-transparent shadow-[0_0_20px_rgba(245,158,11,0.2)] rounded-full"></div>
+        <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-72 md:top-96 bottom-20 w-1 md:w-3 bg-gradient-to-b from-amber-600/60 via-amber-800/40 to-transparent shadow-[0_0_20px_rgba(245,158,11,0.2)] rounded-full"></div>
 
-        <div className="relative z-10 pb-32">
+        <div className="relative z-10 pb-16 md:pb-32">
           <MapNode
-            year="2023"
-            title="The Beginning"
-            description="Enrolled in Computer Science Engineering. The journey began with C programming and mastering the basics of logic."
+            year="2021 - 2023"
+            title="Secondary School (10th)"
+            description="Completed Secondary School Foundation at Shree Swaminarayan International School."
             icon={GraduationCap}
             align="right"
             delay={0.2}
           />
 
           <MapNode
-            year="Late 2023"
-            title="Team 4-Bits Formed"
-            description="Joined forces with like-minded devs. Built 'Air Talks', learned the chaos of Git merges, and the joy of deployment."
-            icon={Users}
+            year="2023 - 2025"
+            title="Higher Secondary (12th)"
+            description="Completed Higher Secondary Education at Shree Swaminarayan International School with a focus on Science/Mathematics."
+            icon={BookOpen}
             align="left"
             delay={0.4}
           />
 
           <MapNode
-            year="2024"
-            title="Frontend Mastery"
-            description="Dove into the React ecosystem. Components, Hooks, Smooth UI transitions. The code started looking beautiful."
+            year="2025 - Present"
+            title="B.E. in Computer Engineering"
+            description="Pursuing Bachelor's in Computer Engineering at Swaminarayan University, Kalol. CGPA: 9.2/10. Specializing in Full Stack Development (MERN) and System Design through Coding Gita collaboration."
             icon={Code2}
             align="right"
             delay={0.6}
-          />
-
-          <MapNode
-            year="Now"
-            title="Building the Future"
-            description="Exploring 3D Webs (Three.js), AI Agents, and scalable systems. The map is still expanding!"
-            icon={Rocket}
-            align="left"
-            delay={0.8}
           />
         </div>
 
