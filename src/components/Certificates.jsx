@@ -17,7 +17,7 @@ const ShelfItem = ({ title, issuer, date, image, color, delay, onClick }) => (
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 120, damping: 12, delay: delay }}
         viewport={{ once: true, margin: "-100px" }}
-        className="relative group flex flex-col items-center justify-end h-60 w-44 md:w-60 mx-2 md:mx-4 shrink-0 perspective-500 cursor-pointer"
+        className="relative group flex flex-col items-center justify-end h-60 w-36 md:w-60 mx-1 md:mx-4 shrink-0 perspective-500 cursor-pointer"
         onClick={onClick}
     >
         {/* The Framed Certificate Object */}
@@ -104,16 +104,16 @@ const HangingMedal = () => {
 const Shelf = ({ children, className = "max-w-7xl", hasMedal }) => (
     <div className={`relative w-full ${className} mx-auto mb-16 md:mb-32 perspective-1000`}>
         {/* Items sitting on shelf */}
-        <div className="flex justify-center flex-wrap px-4 md:px-10 pb-[6px] items-end relative z-20 gap-4 md:gap-12">
+        <div className="flex justify-start md:justify-center overflow-x-auto md:overflow-x-visible no-scrollbar px-4 md:px-10 pb-[6px] items-end relative z-20 gap-2 md:gap-12 snap-x snap-mandatory">
             {children}
         </div>
 
         {/* The Shelf Plank - Enhanced Contrast */}
-        <div className="relative h-10 w-full bg-[#2a2a2a] rounded-sm shadow-[0_30px_60px_rgba(0,0,0,0.8)] border-t border-t-white/40 border-b border-b-black overflow-visible flex items-center justify-center ring-1 ring-white/5">
+        <div className="relative h-6 md:h-10 w-full bg-[#2a2a2a] rounded-sm shadow-[0_30px_60px_rgba(0,0,0,0.8)] border-t border-t-white/40 border-b border-b-black overflow-visible flex items-center justify-center ring-1 ring-white/5">
             <div className="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/wood-pattern.png')] mix-blend-overlay pointer-events-none"></div>
             <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-black/90 pointer-events-none"></div>
             {/* Crisp Edge Highlight */}
-            <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-white/0 via-white/70 to-white/0 shadow-[0_0_8px_rgba(255,255,255,0.6)]"></div>
+            <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-white/0 via-white/80 to-white/0 shadow-[0_0_10px_rgba(255,255,255,0.7)]"></div>
 
             {/* Optional Hanging Medal */}
             {hasMedal && <HangingMedal />}

@@ -15,12 +15,12 @@ const Contact = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8 }}
-                    className="mb-16 text-center relative"
+                    className="mb-10 md:mb-16 text-center relative px-4"
                 >
-                    <h2 className="font-serif text-5xl md:text-6xl font-bold mb-6 tracking-tight text-[#1a1028]">
+                    <h2 className="font-serif text-4xl md:text-6xl font-bold mb-4 md:mb-6 tracking-tight text-[#1a1028]">
                         Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 drop-shadow-sm">Connect</span>
                     </h2>
-                    <p className="text-[#1a1028]/70 max-w-2xl mx-auto text-lg md:text-xl font-medium">
+                    <p className="text-[#1a1028]/70 max-w-2xl mx-auto text-base md:text-xl font-medium px-2">
                         Turning ideas into digital reality. Reach out for collaborations or just a friendly chat.
                     </p>
                     <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto mt-8 rounded-full shadow-lg" />
@@ -33,7 +33,7 @@ const Contact = () => {
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            className="bg-[#1a1028] border border-white/10 rounded-3xl p-8 hover:bg-[#25183a] transition-all duration-500 group relative overflow-hidden shadow-2xl"
+                            className="bg-[#1a1028] border border-white/10 rounded-3xl p-6 md:p-8 hover:bg-[#25183a] transition-all duration-500 group relative overflow-hidden shadow-2xl"
                         >
                             <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-indigo-500/20 transition-colors" />
                             
@@ -94,7 +94,7 @@ const Contact = () => {
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="lg:col-span-7 bg-[#1a1028] border border-white/10 rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-2xl"
+                        className="lg:col-span-7 bg-[#1a1028] border border-white/10 rounded-3xl p-6 md:p-12 relative overflow-hidden shadow-2xl"
                     >
                         <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl -ml-32 -mb-32" />
                         
