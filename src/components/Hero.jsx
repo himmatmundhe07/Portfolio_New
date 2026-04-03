@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const Hero = () => (
-  <header className="relative pt-4 pb-10 md:pt-8 md:pb-20 px-6 overflow-hidden min-h-screen flex flex-col items-center">
+  <header className="hidden md:flex relative pt-4 pb-10 md:pt-8 md:pb-20 px-6 overflow-hidden min-h-screen flex-col items-center">
     {/* Background Big Text */}
     <div className="absolute top-[40%] left-0 w-full overflow-hidden opacity-20 mix-blend-overlay pointer-events-none -translate-y-1/2">
       <div className="flex whitespace-nowrap animate-marquee w-fit">
